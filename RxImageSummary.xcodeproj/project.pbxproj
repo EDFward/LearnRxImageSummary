@@ -15,8 +15,8 @@
 		50AC8E431C414B5E00B0D9D0 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AC8E421C414B5E00B0D9D0 /* Result.framework */; };
 		50AC8E441C414B5E00B0D9D0 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50AC8E421C414B5E00B0D9D0 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50B018AE1C41FAE1006C353E /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50B018AD1C41FAE1006C353E /* APIKey.plist */; };
-		AC5FB100BA18984A0D56EE13 /* UploadImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC5FB577B276DE6EDB45ACB5 /* UploadImageViewController.xib */; };
-		AC5FB59FD8C75A965B331695 /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FBC84FEB751B2F889F5AA /* UploadImageViewController.swift */; };
+		AC5FB100BA18984A0D56EE13 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC5FB577B276DE6EDB45ACB5 /* ViewController.xib */; };
+		AC5FB59FD8C75A965B331695 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FBC84FEB751B2F889F5AA /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,8 +43,8 @@
 		50AC8E3E1C414B5600B0D9D0 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/Mac/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		50AC8E421C414B5E00B0D9D0 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		50B018AD1C41FAE1006C353E /* APIKey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
-		AC5FB577B276DE6EDB45ACB5 /* UploadImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadImageViewController.xib; sourceTree = "<group>"; };
-		AC5FBC84FEB751B2F889F5AA /* UploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
+		AC5FB577B276DE6EDB45ACB5 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		AC5FBC84FEB751B2F889F5AA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +86,8 @@
 				50236CAA1C405CBD00C2E32D /* MainMenu.xib */,
 				50236CAD1C405CBD00C2E32D /* Info.plist */,
 				50B018AD1C41FAE1006C353E /* APIKey.plist */,
-				AC5FBC84FEB751B2F889F5AA /* UploadImageViewController.swift */,
-				AC5FB577B276DE6EDB45ACB5 /* UploadImageViewController.xib */,
+				AC5FBC84FEB751B2F889F5AA /* ViewController.swift */,
+				AC5FB577B276DE6EDB45ACB5 /* ViewController.xib */,
 			);
 			path = RxImageSummary;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 				50236CA91C405CBD00C2E32D /* Assets.xcassets in Resources */,
 				50B018AE1C41FAE1006C353E /* APIKey.plist in Resources */,
 				50236CAC1C405CBD00C2E32D /* MainMenu.xib in Resources */,
-				AC5FB100BA18984A0D56EE13 /* UploadImageViewController.xib in Resources */,
+				AC5FB100BA18984A0D56EE13 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50236CA71C405CBD00C2E32D /* AppDelegate.swift in Sources */,
-				AC5FB59FD8C75A965B331695 /* UploadImageViewController.swift in Sources */,
+				AC5FB59FD8C75A965B331695 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

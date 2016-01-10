@@ -9,7 +9,7 @@
 import Cocoa
 import ReactiveCocoa
 
-class UploadImageViewController: NSViewController, NSSplitViewDelegate {
+class ViewController: NSViewController, NSSplitViewDelegate {
 
   let (uploadSignal, uploadObserver) = Signal<Void, NSError>.pipe()
 
@@ -83,8 +83,6 @@ class UploadImageViewController: NSViewController, NSSplitViewDelegate {
       }
       .filter { $0 != nil }
 
-    // TODO: Throttling, test flatten strategy, etc.
-
     // Display the selected picture.
     imageData.observeNext { data in
       self.imageView.image = NSImage(data: data!)
@@ -100,9 +98,11 @@ class UploadImageViewController: NSViewController, NSSplitViewDelegate {
         return self.parseAnalysisResult(data)
       })
 
-    analysisResults.observeNext { res in
+    let textUpdates = SignalProducer(values: [imageData.map { _ in "Loading..." }, analysisResults]).flatten(.Merge)
+
+    textUpdates.startWithNext { text in
       dispatch_async(dispatch_get_main_queue(), {
-        self.infoView.documentView!.setString(res)
+        self.infoView.documentView!.setString(text)
       })
     }
   }

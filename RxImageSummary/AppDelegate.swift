@@ -13,14 +13,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   @IBOutlet weak var window: NSWindow!
 
-  var uploadImageViewController: UploadImageViewController!
+  var viewController: ViewController!
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     window.styleMask = NSClosableWindowMask | NSTitledWindowMask | NSMiniaturizableWindowMask
 
-    uploadImageViewController = UploadImageViewController(nibName: "UploadImageViewController", bundle: nil)
-    window.contentView!.addSubview(uploadImageViewController.view)
-    uploadImageViewController.view.frame = (window.contentView! as NSView).bounds
+    viewController = ViewController(nibName: "ViewController", bundle: nil)
+    window.contentView!.addSubview(viewController.view)
+    viewController.view.frame = (window.contentView! as NSView).bounds
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {

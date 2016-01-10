@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="UploadImageViewController" customModule="RxImageSummary" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="ViewController" customModule="RxImageSummary" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="5nX-7g-ekl" id="ja0-50-YDa"/>
                 <outlet property="infoView" destination="jTx-34-ErV" id="z9J-zs-fag"/>

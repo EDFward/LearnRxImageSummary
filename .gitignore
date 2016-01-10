@@ -59,3 +59,4 @@ fastlane/report.xml
 fastlane/screenshots
 
 .idea/
+RxImageSummary/APIKey.plist

@@ -1,44 +1,99 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="UploadImageViewController" customModule="RxImageSummary" customModuleProvider="target">
             <connections>
-                <outlet property="picView" destination="9HB-Xa-SmD" id="iBx-fT-Tnb"/>
-                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="imageView" destination="5nX-7g-ekl" id="ja0-50-YDa"/>
+                <outlet property="infoView" destination="jTx-34-ErV" id="z9J-zs-fag"/>
+                <outlet property="view" destination="4q7-8Z-jCE" id="hS0-2E-Za1"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+        <splitView dividerStyle="paneSplitter" vertical="YES" id="4q7-8Z-jCE">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="264"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61b-aG-3nc">
-                    <rect key="frame" x="179" y="49" width="127" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Upload the your pic!" id="cLG-cS-VV9">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzA-Gr-cvc">
-                    <rect key="frame" x="185" y="13" width="111" height="32"/>
-                    <buttonCell key="cell" type="push" title="Choose File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wZx-K9-pzX">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="uploadPic:" target="-2" id="lIC-2e-59n"/>
-                    </connections>
-                </button>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9HB-Xa-SmD">
-                    <rect key="frame" x="0.0" y="74" width="480" height="198"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="XeM-DF-ejd"/>
+                <customView id="EoW-ie-Hf0">
+                    <rect key="frame" x="0.0" y="0.0" width="182" height="264"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzA-Gr-cvc">
+                            <rect key="frame" x="35" y="0.0" width="111" height="32"/>
+                            <buttonCell key="cell" type="push" title="Choose File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wZx-K9-pzX">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="uploadPic:" target="-2" id="lIC-2e-59n"/>
+                            </connections>
+                        </button>
+                        <scrollView autoresizesSubviews="NO" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTx-34-ErV">
+                            <rect key="frame" x="20" y="61" width="142" height="183"/>
+                            <clipView key="contentView" id="AAM-h0-fZ3">
+                                <rect key="frame" x="1" y="1" width="140" height="181"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="71X-EO-6DG">
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="181"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="minSize" width="140" height="181"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
+                                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="140" height="181"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </clipView>
+                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="35G-aF-j7g">
+                                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="hkB-kW-TrN">
+                                <rect key="frame" x="125" y="1" width="16" height="181"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                        </scrollView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="azZ-ds-H5a">
+                            <rect key="frame" x="27" y="36" width="128" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Upload your picture!" id="7Sk-PJ-1Sx">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="gzA-Gr-cvc" firstAttribute="centerX" secondItem="EoW-ie-Hf0" secondAttribute="centerX" id="35t-Or-tXW"/>
+                        <constraint firstItem="jTx-34-ErV" firstAttribute="top" secondItem="EoW-ie-Hf0" secondAttribute="top" constant="20" id="5dh-FQ-Aaq"/>
+                        <constraint firstItem="jTx-34-ErV" firstAttribute="centerX" secondItem="EoW-ie-Hf0" secondAttribute="centerX" id="JoE-0Y-Xyr"/>
+                        <constraint firstItem="azZ-ds-H5a" firstAttribute="top" secondItem="jTx-34-ErV" secondAttribute="bottom" constant="8" id="Pld-fN-9qb"/>
+                        <constraint firstItem="gzA-Gr-cvc" firstAttribute="top" secondItem="azZ-ds-H5a" secondAttribute="bottom" constant="8" id="eYP-cV-GS7"/>
+                        <constraint firstItem="azZ-ds-H5a" firstAttribute="centerX" secondItem="EoW-ie-Hf0" secondAttribute="centerX" id="fsh-aN-W46"/>
+                        <constraint firstItem="jTx-34-ErV" firstAttribute="leading" secondItem="EoW-ie-Hf0" secondAttribute="leading" constant="20" symbolic="YES" id="kPR-bj-hIi"/>
+                        <constraint firstAttribute="bottom" secondItem="gzA-Gr-cvc" secondAttribute="bottom" constant="7" id="xTZ-Bu-XLd"/>
+                    </constraints>
+                </customView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" id="5nX-7g-ekl">
+                    <rect key="frame" x="189" y="-3" width="294" height="270"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="F3Q-fd-fgg"/>
                 </imageView>
             </subviews>
-        </customView>
+            <holdingPriorities>
+                <real value="250"/>
+                <real value="250"/>
+            </holdingPriorities>
+            <connections>
+                <outlet property="delegate" destination="-2" id="APy-pm-bqc"/>
+            </connections>
+            <point key="canvasLocation" x="422" y="886"/>
+        </splitView>
     </objects>
 </document>

@@ -9,18 +9,20 @@
 import Cocoa
 import ReactiveCocoa
 
-class UploadImageViewController: NSViewController {
-  
+class UploadImageViewController: NSViewController, NSSplitViewDelegate {
+
   let (uploadSignal, uploadObserver) = Signal<Void, NSError>.pipe()
 
   let apiInfo = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("APIKey", ofType: "plist")!)!
+
+  @IBOutlet weak var infoView: NSScrollView!
+
+  @IBOutlet weak var imageView: NSImageView!
 
   @IBAction func uploadPic(sender: NSButton) {
     uploadObserver.sendNext()
   }
 
-  @IBOutlet weak var picView: NSImageView!
-  
   private func imageAnalysisRequest(imageData: NSData) -> NSURLRequest {
     let apiKey = apiInfo["AlchemyAPIKey"]!
 
@@ -28,13 +30,37 @@ class UploadImageViewController: NSViewController {
       "http://gateway-a.watsonplatform.net/calls/image/ImageGetRankedImageKeywords?",
       "apikey=\(apiKey)&",
       "imagePostMode=raw&",
-      "outputMode=json"].joinWithSeparator("")
+      "outputMode=json",
+      ].joinWithSeparator("")
     let URL = NSURL(string: urlString)!
     let request = NSMutableURLRequest(URL: URL)
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
     request.HTTPMethod = "POST"
     request.HTTPBody = imageData
     return request
+  }
+
+  private func parseAnalysisResult(data: NSData) -> String {
+    if let resp = try? NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary {
+      if resp["status"] as! String == "OK" {
+        var keywords = [String]()
+        if let keywordList = resp["imageKeywords"] as? [[String: AnyObject]] {
+          for keyword in keywordList {
+            var keywordString = "";
+            if let text = keyword["text"] as? String {
+              keywordString += text
+            }
+            keywordString += " - "
+            if let score = keyword["score"] as? String {
+              keywordString += score
+            }
+            keywords.append(keywordString)
+          }
+        }
+        return keywords.joinWithSeparator("\n")
+      }
+    }
+    return "Failed to get analysis results."
   }
 
   override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
@@ -45,7 +71,6 @@ class UploadImageViewController: NSViewController {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseFiles = true
-        openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
         openPanel.allowedFileTypes = ["jpg", "png", "jpeg"]
         // Block on file selection.
@@ -62,7 +87,7 @@ class UploadImageViewController: NSViewController {
 
     // Display the selected picture.
     imageData.observeNext { data in
-      self.picView.image = NSImage(data: data!)
+      self.imageView.image = NSImage(data: data!)
     }
 
     let analysisResults = imageData
@@ -72,27 +97,35 @@ class UploadImageViewController: NSViewController {
         return NSURLSession.sharedSession().rac_dataWithRequest(URLRequest)
       }
       .map({ (data: NSData, URLResponse: NSURLResponse) -> String in
-        let result = String(data: data, encoding: NSUTF8StringEncoding)!
-        return result
+        return self.parseAnalysisResult(data)
       })
 
-    // For now, simply output to console.
     analysisResults.observeNext { res in
-      print(res)
+      dispatch_async(dispatch_get_main_queue(), {
+        self.infoView.documentView!.setString(res)
+      })
     }
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    // Configure the text info view.
+    let textView = infoView.documentView as! NSTextView
+    textView.editable = false
+    textView.font = NSFont(name: "Menlo", size: 12)
   }
 
   override func viewDidDisappear() {
     // Clear the signal.
     uploadObserver.sendCompleted()
+  }
+
+  func splitView(splitView: NSSplitView, constrainMinCoordinate proposedMinimumPosition: CGFloat, ofSubviewAt dividerIndex: Int) -> CGFloat {
+    return proposedMinimumPosition + 180
   }
 
 }

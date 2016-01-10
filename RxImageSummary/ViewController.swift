@@ -1,11 +1,3 @@
-//
-//  UploadImageViewController.swift
-//  RxImageSummary
-//
-//  Created by Junjia He on 1/8/16.
-//  Copyright (c) 2016 Junjia He. All rights reserved.
-//
-
 import Cocoa
 import ReactiveCocoa
 
